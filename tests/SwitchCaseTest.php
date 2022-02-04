@@ -1,6 +1,7 @@
 <?php
 
 use Lenny4\SwtichCase\SwtichCase;
+use PHPUnit\Framework\ExpectationFailedException;
 
 const CAMEL_CASE_EXAMPLE = 'thisIsAnExample';
 const SNAKE_CASE_EXAMPLE = 'this_is_an_example';
@@ -13,7 +14,7 @@ it('SwtichCase::ALL_CASES has all cases', function () {
     $allCases = [];
     /** @var ReflectionClassConstant $constant */
     foreach ($switchCaseReflection->getConstants() as $constant) {
-        if (! is_string($constant)) {
+        if (!is_string($constant)) {
             continue;
         }
         if (substr_compare($constant, $endWith, -strlen($endWith)) === 0) {
@@ -34,7 +35,11 @@ it('has all test created', function () {
             }
         }
     }
-    expect($errors)->toBeEmpty();
+    try {
+        expect($errors)->toBeEmpty();
+    } catch (ExpectationFailedException $exception) {
+        throw new ExpectationFailedException('Please run: php src/generate-test.php to fix the error.');
+    }
 });
 
 it('can transform CAMEL_CASE to CAMEL_CASE', function () {
