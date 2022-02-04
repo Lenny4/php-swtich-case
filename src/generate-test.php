@@ -25,4 +25,9 @@ foreach (SwtichCase::ALL_CASES as $case1) {
     }
 }
 
+while (substr($fileContent, -1) === "\n") {
+    $fileContent = substr($fileContent, 0, -1);
+}
+$fileContent .= "\n";
+
 file_put_contents($fileName, $fileContent);

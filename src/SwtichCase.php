@@ -18,7 +18,8 @@ class SwtichCase
         self::PASCAL_CASE,
     ];
 
-    private const REGEX_UNDERSCORE_MINUS = '(_[a-z]|-[a-z])';
+    private const REGEX_UNDERSCORE_MINUS = '/(_[a-z]|-[a-z])/';
+    private const REGEX_MAJ = '/[A-Z]/';
 
     public static function change(string $string, string $case): string
     {
@@ -38,27 +39,47 @@ class SwtichCase
 
     private static function toCamelCase(string $string): string
     {
-        return preg_replace_callback(
+        return lcfirst(preg_replace_callback(
             self::REGEX_UNDERSCORE_MINUS,
             static function ($matches) {
-                return strtolower($matches[0]);
+                return str_replace(['_', '-'], '', strtoupper($matches[0]));
             },
             $string
-        );
+        ));
     }
 
     private static function toSnakeCase(string $string): string
     {
-        return $string;
+        $result = strtolower(preg_replace_callback(
+            self::REGEX_MAJ,
+            static function ($matches) {
+                return '_' . $matches[0];
+            },
+            str_replace('-', '_', $string)
+        ));
+        if (strpos($result, '_') === 0) {
+            return substr($result, 1);
+        }
+        return $result;
     }
 
     private static function toKebabCase(string $string): string
     {
-        return $string;
+        $result = strtolower(preg_replace_callback(
+            self::REGEX_MAJ,
+            static function ($matches) {
+                return '-' . $matches[0];
+            },
+            str_replace('_', '-', $string)
+        ));
+        if (strpos($result, '-') === 0) {
+            return substr($result, 1);
+        }
+        return $result;
     }
 
     private static function toPascalCase(string $string): string
     {
-        return $string;
+        return ucfirst(self::toCamelCase($string));
     }
 }

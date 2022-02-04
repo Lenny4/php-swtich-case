@@ -2,10 +2,10 @@
 
 use Lenny4\SwtichCase\SwtichCase;
 
-const CAMEL_CASE_EXAMPLE = 'thisIsCamelCase';
-const SNAKE_CASE_EXAMPLE = 'this_is_snake_case';
-const KEBAB_CASE_EXAMPLE = 'this-is-kebab-case';
-const PASCAL_CASE_EXAMPLE = 'ThisIsPascalCase';
+const CAMEL_CASE_EXAMPLE = 'thisIsAnExample';
+const SNAKE_CASE_EXAMPLE = 'this_is_an_example';
+const KEBAB_CASE_EXAMPLE = 'this-is-an-example';
+const PASCAL_CASE_EXAMPLE = 'ThisIsAnExample';
 
 it('SwtichCase::ALL_CASES has all cases', function () {
     $endWith = 'CASE';
@@ -100,4 +100,3 @@ it('can transform PASCAL_CASE to KEBAB_CASE', function () {
 it('can transform PASCAL_CASE to PASCAL_CASE', function () {
     expect(PASCAL_CASE_EXAMPLE)->toBe(SwtichCase::change(PASCAL_CASE_EXAMPLE, SwtichCase::PASCAL_CASE));
 });
-

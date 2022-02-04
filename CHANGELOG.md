@@ -1,7 +1,7 @@
-# Changelog
+# Unreleased
 
-All notable changes to `php-swtich-case` will be documented in this file.
+Please write your changes here
 
-## 1.0.0 - 202X-XX-XX
+## 1.0.0 - 2021-02-01
 
-- initial release
+- feat: initial release
