@@ -60,6 +60,7 @@ class SwtichCase
         if (strpos($result, '_') === 0) {
             return substr($result, 1);
         }
+
         return $result;
     }
 
@@ -75,6 +76,7 @@ class SwtichCase
         if (strpos($result, '-') === 0) {
             return substr($result, 1);
         }
+
         return $result;
     }
 
