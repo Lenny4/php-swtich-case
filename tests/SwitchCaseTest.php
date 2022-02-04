@@ -13,7 +13,7 @@ it('SwtichCase::ALL_CASES has all cases', function () {
     $allCases = [];
     /** @var ReflectionClassConstant $constant */
     foreach ($switchCaseReflection->getConstants() as $constant) {
-        if (!is_string($constant)) {
+        if (! is_string($constant)) {
             continue;
         }
         if (substr_compare($constant, $endWith, -strlen($endWith)) === 0) {
