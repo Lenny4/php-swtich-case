@@ -13,7 +13,7 @@ it('SwtichCase::ALL_CASES has all cases', function () {
     $allCases = [];
     /** @var ReflectionClassConstant $constant */
     foreach ($switchCaseReflection->getConstants() as $constant) {
-        if (!is_string($constant)) {
+        if (! is_string($constant)) {
             continue;
         }
         if (substr_compare($constant, $endWith, -strlen($endWith)) === 0) {
@@ -100,4 +100,3 @@ it('can transform PASCAL_CASE to KEBAB_CASE', function () {
 it('can transform PASCAL_CASE to PASCAL_CASE', function () {
     expect(PASCAL_CASE_EXAMPLE)->toBe(SwtichCase::change(PASCAL_CASE_EXAMPLE, SwtichCase::PASCAL_CASE));
 });
-
